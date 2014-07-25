@@ -21,8 +21,8 @@ public enum class ForAllStrategy(val CRR: Boolean, val LRR: Boolean, val TDR: Bo
     DT_RL : ForAllStrategy(true, true, true)
 }
 
-public fun TwoDimension.forAll(strategy: ForAllStrategy = ForAllStrategy.LR_TD, f: (Int, Int) -> Unit) {
-    if (!strategy.CRR) {
+public fun TwoDimension.forAll2(strategy: ForAllStrategy = ForAllStrategy.LR_TD, f: (Int, Int) -> Unit) {
+    if (strategy.CRR) {
         for (col in (0..cols - 1).reverse(strategy.LRR))
             for (row in (0..rows - 1).reverse(strategy.TDR))
                 f(col, row)
@@ -34,7 +34,7 @@ public fun TwoDimension.forAll(strategy: ForAllStrategy = ForAllStrategy.LR_TD, 
 }
 
 public fun TwoDimension.forAll(strategy: ForAllStrategy = ForAllStrategy.LR_TD, f: (Coordinates) -> Unit) {
-    forAll(strategy) {
+    forAll2(strategy) {
         (col, row) ->
         f(SimpleCoordinates(col, row))
     }
