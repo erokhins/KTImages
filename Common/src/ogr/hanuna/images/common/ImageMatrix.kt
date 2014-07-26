@@ -1,6 +1,6 @@
 package ogr.hanuna.images.common
 
-import org.hanuna.math.toCorrectImageNumber
+import org.hanuna.images.common.toCorrectImageNumber
 
 /**
  * Created by smevok on 7/26/14.

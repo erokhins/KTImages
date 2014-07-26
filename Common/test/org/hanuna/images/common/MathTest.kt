@@ -2,9 +2,6 @@ package org.hanuna.images.common
 
 import org.junit.Test
 import kotlin.test.assertEquals
-import org.hanuna.math.myMod
-import org.hanuna.math.to255Int
-import org.hanuna.math.toCorrectImageNumber
 
 /**
  * Created by smevok on 7/26/14.

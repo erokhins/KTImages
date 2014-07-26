@@ -1,4 +1,4 @@
-package org.hanuna.math
+package org.hanuna.images.common
 
 /**
  * Created by smevok on 5/11/14.

@@ -12,7 +12,7 @@ import ogr.hanuna.images.common.forAll2
 /**
  * Created by smevok on 7/25/14.
  */
-public class IterateTest {
+class IterateTest {
     Test fun reverseFun() {
         var s = ""
         for (i in (1..3).reverse())
