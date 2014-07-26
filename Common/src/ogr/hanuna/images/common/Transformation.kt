@@ -47,3 +47,18 @@ public fun <T> MutableMatrix<T>.toI(): ImageMutableMatrix<T> {
         }
     }
 }
+
+public fun <T> Vector<T>.reverse(): ImageVector<T> = object : ImageVector<T> {
+    override val size: Int = this@reverse.size
+    override fun get_correct(index: Int): T = this@reverse[size - 1 - index]
+}
+
+public fun <T> Matrix<T>.getRow(row: Int): ImageVector<T> = object : ImageVector<T> {
+    override val size: Int = cols
+    override fun get_correct(index: Int): T = this@getRow[index, row]
+}
+
+public fun <T> Matrix<T>.getCol(col: Int): ImageVector<T> = object : ImageVector<T> {
+    override val size: Int = rows
+    override fun get_correct(index: Int): T = this@getCol[col, index]
+}
