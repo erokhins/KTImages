@@ -26,7 +26,7 @@ public class TransformationTest {
 
     fun Matrix<Int>.toStr(): String {
         val s = StringBuilder()
-        forAll2(ForAllStrategy.LR_TD) { (col, row) ->
+        forAll2(ForAllStrategy.LR_TB) { (col, row) ->
             if (col == 0 && row != 0)
                 s.append(":")
             s.append(this[col, row])
