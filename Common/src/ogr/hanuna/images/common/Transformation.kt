@@ -53,6 +53,18 @@ public fun <T> Vector<T>.reverse(): ImageVector<T> = object : ImageVector<T> {
     override fun get_correct(index: Int): T = this@reverse[size - 1 - index]
 }
 
+public fun <T> Vector<T>.asMatrixRow(): ImageMatrix<T> = object: ImageMatrix<T> {
+    override fun get_correct(col: Int, row: Int): T = this@asMatrixRow[col]
+    override val cols: Int = size
+    override val rows: Int = 1
+}
+
+public fun <T> Vector<T>.asMatrixCol(): ImageMatrix<T> = object: ImageMatrix<T> {
+    override fun get_correct(col: Int, row: Int): T = this@asMatrixCol[row]
+    override val cols: Int = 1
+    override val rows: Int = size
+}
+
 public fun <T> Matrix<T>.getRow(row: Int): ImageVector<T> = object : ImageVector<T> {
     override val size: Int = cols
     override fun get_correct(index: Int): T = this@getRow[index, row]
