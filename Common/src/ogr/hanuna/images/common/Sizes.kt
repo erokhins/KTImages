@@ -40,3 +40,6 @@ public val Int.row: Coordinates
 
 public fun Coordinates.plus(other: Coordinates): Coordinates = coord(this.col + other.col, this.row + other.row)
 public fun Coordinates.minus(other: Coordinates): Coordinates = coord(this.col - other.col, this.row - other.row)
+
+public fun IntRange.plus(i: Int): IntRange = IntRange(start + i, end + i)
+public fun Int.plus(range: IntRange): IntRange = range + this
