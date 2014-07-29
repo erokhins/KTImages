@@ -25,4 +25,18 @@ public class SimpleCoordinates(override val col: Int, override val row: Int) : C
 public fun OneDimension.equalSize(other: OneDimension): Boolean = this.size == other.size
 public fun TwoDimension.equalSize(other: TwoDimension): Boolean = this.cols == other.cols && this.rows == other.rows
 
+public fun OneDimension.isEmpty(): Boolean = size == 0
+public fun OneDimension.isNotEmpty(): Boolean = size != 0
+
+public fun TwoDimension.isEmpty(): Boolean = cols == 0 || rows == 0
+public fun TwoDimension.isNotEmpty(): Boolean = !isEmpty()
+
 public fun coord(col: Int, row: Int): Coordinates = SimpleCoordinates(col, row)
+
+public val Int.col: Coordinates
+    get() = coord(this, 0)
+public val Int.row: Coordinates
+    get() = coord(0, this)
+
+public fun Coordinates.plus(other: Coordinates): Coordinates = coord(this.col + other.col, this.row + other.row)
+public fun Coordinates.minus(other: Coordinates): Coordinates = coord(this.col - other.col, this.row - other.row)
