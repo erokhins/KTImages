@@ -2,10 +2,10 @@ package org.hanuna.images.common
 
 import org.junit.Test
 import org.hanuna.images.common.test.vector
-import ogr.hanuna.images.common.vectorMultiplyOperation
+import org.hanuna.images.common.vectorMultiplyOperation
 import kotlin.test.assertEquals
 import org.hanuna.images.common.test.matrix
-import ogr.hanuna.images.common.matrixMultiplyOperation
+import org.hanuna.images.common.matrixMultiplyOperation
 import org.hanuna.images.common.test.toStr
 
 /**

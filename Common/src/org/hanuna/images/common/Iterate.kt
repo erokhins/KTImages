@@ -1,4 +1,4 @@
-package ogr.hanuna.images.common
+package org.hanuna.images.common
 
 import org.hanuna.images.common.reverse
 

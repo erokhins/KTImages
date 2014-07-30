@@ -1,4 +1,4 @@
-package ogr.hanuna.images.common
+package org.hanuna.images.common
 
 /**
  * Created by smevok on 7/25/14.

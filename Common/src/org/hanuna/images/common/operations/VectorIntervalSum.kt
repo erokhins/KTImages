@@ -1,9 +1,9 @@
-package ogr.hanuna.images.common.operations
+package org.hanuna.images.common.operations
 
-import ogr.hanuna.images.common.Vector
-import ogr.hanuna.images.common.MutableVector
-import ogr.hanuna.images.common.forAll
-import ogr.hanuna.images.common.equalSize
+import org.hanuna.images.common.Vector
+import org.hanuna.images.common.MutableVector
+import org.hanuna.images.common.forAll
+import org.hanuna.images.common.equalSize
 
 /**
  * Created by smevok on 7/30/14.

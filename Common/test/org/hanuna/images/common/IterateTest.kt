@@ -1,13 +1,13 @@
 package org.hanuna.images.common
 
 import org.junit.Test
-import ogr.hanuna.images.common.reverse
+import org.hanuna.images.common.reverse
 import kotlin.test.assertEquals
-import ogr.hanuna.images.common.OneDimension
-import ogr.hanuna.images.common.TwoDimension
-import ogr.hanuna.images.common.forAll
-import ogr.hanuna.images.common.ForAllStrategy
-import ogr.hanuna.images.common.forAll2
+import org.hanuna.images.common.OneDimension
+import org.hanuna.images.common.TwoDimension
+import org.hanuna.images.common.forAll
+import org.hanuna.images.common.ForAllStrategy
+import org.hanuna.images.common.forAll2
 
 /**
  * Created by smevok on 7/25/14.

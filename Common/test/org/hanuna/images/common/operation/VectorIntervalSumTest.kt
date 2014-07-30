@@ -1,12 +1,12 @@
 package org.hanuna.images.common.operation
 
-import ogr.hanuna.images.common.operations.RingOperation
+import org.hanuna.images.common.operations.RingOperation
 import org.junit.Test
 import org.hanuna.images.common.test.vector
-import ogr.hanuna.images.common.MutableVector
-import ogr.hanuna.images.common.operations.createSumGetter
+import org.hanuna.images.common.MutableVector
+import org.hanuna.images.common.operations.createSumGetter
 import kotlin.test.assertEquals
-import ogr.hanuna.images.common.operations.ImageVectorIntervalSumGetter
+import org.hanuna.images.common.operations.ImageVectorIntervalSumGetter
 
 /**
  * Created by smevok on 7/30/14.

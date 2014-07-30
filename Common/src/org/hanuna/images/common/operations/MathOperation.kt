@@ -1,4 +1,4 @@
-package ogr.hanuna.images.common.operations
+package org.hanuna.images.common.operations
 
 /**
  * Created by smevok on 7/30/14.

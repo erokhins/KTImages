@@ -1,13 +1,13 @@
 package org.hanuna.images.common
 
-import ogr.hanuna.images.common.Matrix
-import ogr.hanuna.images.common.forAll2
-import ogr.hanuna.images.common.ForAllStrategy
+import org.hanuna.images.common.Matrix
+import org.hanuna.images.common.forAll2
+import org.hanuna.images.common.ForAllStrategy
 import org.junit.Test
 import kotlin.test.assertEquals
-import ogr.hanuna.images.common.simpleTransform
-import ogr.hanuna.images.common.SimpleTransform
-import ogr.hanuna.images.common.SimpleTransform.*
+import org.hanuna.images.common.simpleTransform
+import org.hanuna.images.common.SimpleTransform
+import org.hanuna.images.common.SimpleTransform.*
 
 
 /**

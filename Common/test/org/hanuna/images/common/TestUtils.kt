@@ -1,11 +1,11 @@
 package org.hanuna.images.common.test
 
-import ogr.hanuna.images.common.Matrix
+import org.hanuna.images.common.Matrix
 import java.util.ArrayList
-import ogr.hanuna.images.common.ImageMatrix
-import ogr.hanuna.images.common.forAll
-import ogr.hanuna.images.common.ImageVector
-import ogr.hanuna.images.common.Vector
+import org.hanuna.images.common.ImageMatrix
+import org.hanuna.images.common.forAll
+import org.hanuna.images.common.ImageVector
+import org.hanuna.images.common.Vector
 import org.junit.Test
 import kotlin.test.assertEquals
 
