@@ -57,13 +57,14 @@ private class Image2SumGetter<T>(private val partialSums: Vector<T>, sumOperatio
 private class ImageVectorIntervalSumGetterImpl<T>(private val sumGetter: Image2SumGetter<T>,
                                                   private val minus: T.(T) -> T) : ImageVectorIntervalSumGetter<T> {
     override fun get(range: IntRange): T {
-        val offset: Int
-        if (range.start > 0)
-            offset = 0
-        else {
-            val t = (- range.start) / sumGetter.period
-            offset = (t + 1) * sumGetter.period
-        }
+        val offset = offsetForImageIndex(range.start, sumGetter.period)
         return sumGetter[range.end + offset] - sumGetter[range.start + offset - 1]
     }
+}
+
+private fun offsetForImageIndex(index: Int, size: Int): Int {
+    if (index > 0)
+        return 0
+    val t = (-index) / size
+    return (t + 1) * size
 }

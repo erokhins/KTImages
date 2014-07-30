@@ -7,18 +7,12 @@ import org.hanuna.images.common.MutableVector
 import org.hanuna.images.common.operations.createSumGetter
 import kotlin.test.assertEquals
 import org.hanuna.images.common.operations.ImageVectorIntervalSumGetter
+import org.hanuna.images.common.test.IntRingOperation
 
 /**
  * Created by smevok on 7/30/14.
  */
 public class VectorIntervalSumTest {
-
-    object IntRingOperation : RingOperation<Int> {
-        override val minus: Int.(Int) -> Int = { this - it }
-        override val plus: Int.(Int) -> Int = { this + it }
-        override val nTimes: Int.(Int) -> Int = { this * it }
-        override val times: Int.(Int) -> Int = { this * it }
-    }
 
     class MutableIntVector(override val size: Int) : MutableVector<Int> {
         val values = IntArray(size)

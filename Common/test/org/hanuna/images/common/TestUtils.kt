@@ -8,6 +8,7 @@ import org.hanuna.images.common.ImageVector
 import org.hanuna.images.common.Vector
 import org.junit.Test
 import kotlin.test.assertEquals
+import org.hanuna.images.common.operations.RingOperation
 
 /**
  * Created by smevok on 7/27/14.
@@ -70,6 +71,13 @@ public fun <T> Matrix<T>.toStr(toStr: (T) -> String = {it.toString()}): String {
             append(toStr(this@toStr[it]))
         }
     }
+}
+
+object IntRingOperation : RingOperation<Int> {
+    override val minus: Int.(Int) -> Int = { this - it }
+    override val plus: Int.(Int) -> Int = { this + it }
+    override val nTimes: Int.(Int) -> Int = { this * it }
+    override val times: Int.(Int) -> Int = { this * it }
 }
 
 class TestStr {
