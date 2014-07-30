@@ -100,3 +100,16 @@ public fun <T> Matrix<T>.simpleTransform(transform: SimpleTransform): ImageMatri
                 return this@simpleTransform[col3, row3]
             }
         }
+
+public fun <A, B> Vector<A>.apply(f: (A) -> B): ImageVector<B> =
+        object : ImageVector<B> {
+            override val size: Int = this@apply.size
+            override fun get_correct(index: Int): B = f(this@apply[index])
+        }
+
+public fun <A, B> Matrix<A>.apply(f: (A) -> B): ImageMatrix<B> =
+        object : ImageMatrix<B> {
+            override val cols: Int = this@apply.cols
+            override val rows: Int = this@apply.rows
+            override fun get_correct(col: Int, row: Int): B = f(this@apply[col, row])
+        }
