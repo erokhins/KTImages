@@ -1,4 +1,14 @@
-package org.hanuna.images.common
+package org.hanuna.images.common.operations
+
+import org.hanuna.images.common.Matrix
+import org.hanuna.images.common.ImageVector
+import org.hanuna.images.common.ImageMatrix
+import org.hanuna.images.common.Vector
+import org.hanuna.images.common
+import org.hanuna.images.common.equalSize
+import org.hanuna.images.common.forAll
+import org.hanuna.images.common.getCol
+import org.hanuna.images.common.getRow
 
 /**
  * Created by smevok on 7/26/14.
@@ -37,18 +47,6 @@ public fun <A, B, C> vectorElementOperation(v: Vector<A>, b: B, operation: (A, B
         override val size: Int = v.size
 
         override fun get_correct(index: Int): C = operation(v[index], b)
-    }
-}
-
-public fun <T> Vector<T>.writeTo(other: MutableVector<T>) {
-    forAll {
-        other[it] = this[it]
-    }
-}
-
-public fun <T> Matrix<T>.writeTo(other: MutableMatrix<T>) {
-    forAll {
-        other[it] = this[it]
     }
 }
 

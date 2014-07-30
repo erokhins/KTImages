@@ -113,3 +113,15 @@ public fun <A, B> Matrix<A>.apply(f: (A) -> B): ImageMatrix<B> =
             override val rows: Int = this@apply.rows
             override fun get_correct(col: Int, row: Int): B = f(this@apply[col, row])
         }
+
+public fun <T> Vector<T>.writeTo(other: MutableVector<T>) {
+    forAll {
+        other[it] = this[it]
+    }
+}
+
+public fun <T> Matrix<T>.writeTo(other: MutableMatrix<T>) {
+    forAll {
+        other[it] = this[it]
+    }
+}
