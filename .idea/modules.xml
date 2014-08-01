@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Common/Common.iml" filepath="$PROJECT_DIR$/Common/Common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ImageUtils/ImageUtils.iml" filepath="$PROJECT_DIR$/ImageUtils/ImageUtils.iml" />
       <module fileurl="file://$PROJECT_DIR$/KTImages.iml" filepath="$PROJECT_DIR$/KTImages.iml" />
     </modules>
   </component>
