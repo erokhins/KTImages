@@ -125,3 +125,19 @@ public fun <T> Matrix<T>.writeTo(other: MutableMatrix<T>) {
         other[it] = this[it]
     }
 }
+
+fun <T> ImageMatrix<T>.getArea(area: MatrixArea): ImageMatrix<T> = object : ImageMatrix<T> {
+    override val cols: Int = area.cornerRB.col - area.cornerLT.col  + 1
+    override val rows: Int = area.cornerRB.row - area.cornerLT.row  + 1
+
+    private val col_shift = area.cornerLT.col
+    private val row_shift = area.cornerLT.row
+    override fun get_correct(col: Int, row: Int): T = this@getArea[col + col_shift, row + row_shift]
+}
+
+fun <T> ImageVector<T>.getSubVector(range: IntRange): ImageVector<T> = object : ImageVector<T> {
+    override val size: Int = range.end - range.start + 1
+
+    private val shift = range.start
+    override fun get_correct(index: Int): T = this@getSubVector[index + shift]
+}
