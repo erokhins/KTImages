@@ -14,21 +14,21 @@ import org.hanuna.images.common.getRow
  * Created by smevok on 7/26/14.
  */
 
-public fun <A, B, C> matrixElementOperation(m1: Matrix<A>, m2: Matrix<B>, operation: (A, B) -> C): ImageMatrix<C> {
+public fun <A, B, C> matrixElementOperation(m1: Matrix<A>, m2: Matrix<B>, operation: A.(B) -> C): ImageMatrix<C> {
     assert(m1.equalSize(m2), "Size of matrix non equal: (${m1.cols}, ${m1.rows}) <> (${m2.cols}, ${m2.rows})")
 
     return object : ImageMatrix<C> {
         override val cols: Int = m1.cols
         override val rows: Int = m1.rows
-        override fun get_correct(col: Int, row: Int): C = operation(m1[col, row], m2[col, row])
+        override fun get_correct(col: Int, row: Int): C = m1[col, row].operation(m2[col, row])
     }
 }
 
-public fun <A, B, C> matrixElementOperation(m: Matrix<A>, b: B, operation: (A, B) -> C): ImageMatrix<C> {
+public fun <A, B, C> matrixElementOperation(b: B, m: Matrix<A>, operation: B.(A) -> C): ImageMatrix<C> {
     return object : ImageMatrix<C> {
         override val cols: Int = m.cols
         override val rows: Int = m.rows
-        override fun get_correct(col: Int, row: Int): C = operation(m[col, row], b)
+        override fun get_correct(col: Int, row: Int): C = b.operation(m[col, row])
     }
 }
 
