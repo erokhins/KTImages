@@ -4,11 +4,16 @@ import org.hanuna.images.common.Matrix
 import org.hanuna.images.common.ImageVector
 import org.hanuna.images.common.ImageMatrix
 import org.hanuna.images.common.Vector
-import org.hanuna.images.common
+import org.hanuna.images.common.FIRST
 import org.hanuna.images.common.equalSize
 import org.hanuna.images.common.forAll
 import org.hanuna.images.common.getCol
 import org.hanuna.images.common.getRow
+import org.hanuna.images.common.isNotEmpty
+import org.hanuna.images.common.coord
+import org.hanuna.images.common.toI
+import org.hanuna.images.common.getArea
+import org.hanuna.images.common.rangeTo
 
 /**
  * Created by smevok on 7/26/14.
@@ -75,5 +80,30 @@ public fun <A, B, C> matrixMultiplyOperation(m1: Matrix<A>, m2: Matrix<B>, times
             val rowVector = m1.getRow(row)
             return vectorMultiplyOperation(rowVector, colVector, times, plus)
         }
+    }
+}
+
+public fun <T> matrixSumOperation(m: Matrix<T>, plus: T.(T) -> T): T {
+    assert(m.isNotEmpty())
+    var t = m[FIRST]
+    m.forAll {
+        if (it != FIRST)
+            t += m[it]
+    }
+    return t
+}
+
+public fun <A, B, C> matrixResultant(m1: Matrix<A>, m2: Matrix<B>, times: A.(B) -> C, plus: C.(C) -> C):
+        ImageMatrix<C> {
+    assert(m1.isNotEmpty() && m2.isNotEmpty())
+    return object : ImageMatrix<C> {
+        override val cols: Int = m1.cols
+        override val rows: Int = m2.cols
+        override fun get_correct(col: Int, row: Int): C {
+            val partM1 = m1.toI().getArea(coord(col, row)..coord(col + m2.cols - 1, row + m2.rows - 1))
+            val mulPart = matrixElementOperation(partM1, m2, times)
+            return matrixSumOperation(mulPart, plus)
+        }
+
     }
 }

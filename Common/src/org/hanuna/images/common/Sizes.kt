@@ -32,6 +32,7 @@ public fun TwoDimension.isEmpty(): Boolean = cols == 0 || rows == 0
 public fun TwoDimension.isNotEmpty(): Boolean = !isEmpty()
 
 public fun coord(col: Int, row: Int): Coordinates = SimpleCoordinates(col, row)
+public val FIRST: Coordinates = coord(0, 0)
 
 public val Int.col: Coordinates
     get() = coord(this, 0)
