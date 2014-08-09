@@ -101,17 +101,17 @@ public fun <T> Matrix<T>.simpleTransform(transform: SimpleTransform): ImageMatri
             }
         }
 
-public fun <A, B> Vector<A>.apply(f: (A) -> B): ImageVector<B> =
+public fun <A, B> Vector<A>.map(f: (A) -> B): ImageVector<B> =
         object : ImageVector<B> {
-            override val size: Int = this@apply.size
-            override fun get_correct(index: Int): B = f(this@apply[index])
+            override val size: Int = this@map.size
+            override fun get_correct(index: Int): B = f(this@map[index])
         }
 
-public fun <A, B> Matrix<A>.apply(f: (A) -> B): ImageMatrix<B> =
+public fun <A, B> Matrix<A>.map(f: (A) -> B): ImageMatrix<B> =
         object : ImageMatrix<B> {
-            override val cols: Int = this@apply.cols
-            override val rows: Int = this@apply.rows
-            override fun get_correct(col: Int, row: Int): B = f(this@apply[col, row])
+            override val cols: Int = this@map.cols
+            override val rows: Int = this@map.rows
+            override fun get_correct(col: Int, row: Int): B = f(this@map[col, row])
         }
 
 public fun <T> Vector<T>.writeTo(other: MutableVector<T>) {
