@@ -50,19 +50,19 @@ public fun <A, B, C> vectorElementOperation(v: Vector<A>, b: B, operation: (A, B
     }
 }
 
-public fun <A, B, C> vectorMultiplyOperation(v1: Vector<A>, v2: Vector<B>, times: (A, B) -> C, plus: (C, C) -> C): C {
+public fun <A, B, C> vectorMultiplyOperation(v1: Vector<A>, v2: Vector<B>, times: A.(B) -> C, plus: C.(C) -> C): C {
     assert(v1.equalSize(v2), "For this operation size of vectors(v1.szie: ${v1.size}; v2.size: ${v2.size})  must be equal.")
     assert(v1.size != 0, "Empty vectors not supported")
-    var c: C = times(v1[0], v2[0])
+    var c: C = v1[0] * v2[0]
     v1.forAll {
         if (it != 0) {
-            c = plus(c, times(v1[it], v2[it]))
+            c = c + v1[it] * v2[it]
         }
     }
     return c
 }
 
-public fun <A, B, C> matrixMultiplyOperation(m1: Matrix<A>, m2: Matrix<B>, times: (A, B) -> C, plus: (C, C) -> C):
+public fun <A, B, C> matrixMultiplyOperation(m1: Matrix<A>, m2: Matrix<B>, times: A.(B) -> C, plus: C.(C) -> C):
         ImageMatrix<C> {
     assert(m1.cols == m2.rows, "For this operation m1.cols(${m1.cols}) must be equal m2.rows(${m2.rows}).")
     assert(m1.cols != 0, "Are you kidding? It is matrix 0xN!")
