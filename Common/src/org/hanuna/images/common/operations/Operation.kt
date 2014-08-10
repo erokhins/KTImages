@@ -93,14 +93,14 @@ public fun <T> matrixSumOperation(m: Matrix<T>, plus: T.(T) -> T): T {
     return t
 }
 
-public fun <A, B, C> matrixResultant(m1: Matrix<A>, m2: Matrix<B>, times: A.(B) -> C, plus: C.(C) -> C):
+public fun <A, B, C> matrixResultant(m1: ImageMatrix<A>, m2: Matrix<B>, times: A.(B) -> C, plus: C.(C) -> C):
         ImageMatrix<C> {
     assert(m1.isNotEmpty() && m2.isNotEmpty())
     return object : ImageMatrix<C> {
         override val cols: Int = m1.cols
-        override val rows: Int = m2.cols
+        override val rows: Int = m1.rows
         override fun get_correct(col: Int, row: Int): C {
-            val partM1 = m1.toI().getArea(coord(col, row)..coord(col + m2.cols - 1, row + m2.rows - 1))
+            val partM1 = m1.getArea(coord(col, row)..coord(col + m2.cols - 1, row + m2.rows - 1))
             val mulPart = matrixElementOperation(partM1, m2, times)
             return matrixSumOperation(mulPart, plus)
         }

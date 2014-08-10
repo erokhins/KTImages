@@ -17,7 +17,8 @@ public trait Coordinates {
     val col: Int
     val row: Int
 
-    public fun equals(other : Coordinates) : Boolean = col == other.col && row == other.row
+    public override fun equals(other : Any?) : Boolean = other is Coordinates && col == other.col && row == other.row
+    override fun hashCode(): Int = col + row * 37
 }
 
 public class SimpleCoordinates(override val col: Int, override val row: Int) : Coordinates
