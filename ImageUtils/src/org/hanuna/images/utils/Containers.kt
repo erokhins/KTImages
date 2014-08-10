@@ -8,7 +8,7 @@ import org.hanuna.images.common.ImageMutableMatrix
  */
 
 
-public abstract class ImageContainer<T> : ImageMutableMatrix<T> {
+public abstract class ImageMatrixContainer<T> : ImageMutableMatrix<T> {
 
     protected val arraySize: Int = cols * rows
     protected abstract fun getInArray(index: Int): T
@@ -20,7 +20,7 @@ public abstract class ImageContainer<T> : ImageMutableMatrix<T> {
     override fun set_correct(col: Int, row: Int, value: T) = setInArray(indexInArray(col, row), value)
 }
 
-public class DoubleImageContainer(override val cols: Int, override val rows: Int): ImageContainer<Double>() {
+public class DoubleImageContainer(override val cols: Int, override val rows: Int): ImageMatrixContainer<Double>() {
     val array = DoubleArray(arraySize)
 
     override fun getInArray(index: Int): Double = array[index]
@@ -29,7 +29,7 @@ public class DoubleImageContainer(override val cols: Int, override val rows: Int
     }
 }
 
-public class LongImageContainer(override val cols: Int, override val rows: Int): ImageContainer<Long>() {
+public class LongImageContainer(override val cols: Int, override val rows: Int): ImageMatrixContainer<Long>() {
     val array = LongArray(arraySize)
 
     override fun getInArray(index: Int): Long = array[index]
@@ -38,7 +38,7 @@ public class LongImageContainer(override val cols: Int, override val rows: Int):
     }
 }
 
-public class FloatImageContainer(override val cols: Int, override val rows: Int): ImageContainer<Float>() {
+public class FloatImageContainer(override val cols: Int, override val rows: Int): ImageMatrixContainer<Float>() {
     val array = FloatArray(arraySize)
 
     override fun getInArray(index: Int): Float = array[index]
@@ -47,7 +47,7 @@ public class FloatImageContainer(override val cols: Int, override val rows: Int)
     }
 }
 
-public class IntImageContainer(override val cols: Int, override val rows: Int): ImageContainer<Int>() {
+public class IntImageContainer(override val cols: Int, override val rows: Int): ImageMatrixContainer<Int>() {
     val array = IntArray(arraySize)
 
     override fun getInArray(index: Int): Int = array[index]
@@ -56,7 +56,7 @@ public class IntImageContainer(override val cols: Int, override val rows: Int): 
     }
 }
 
-public class ShortImageContainer(override val cols: Int, override val rows: Int): ImageContainer<Short>() {
+public class ShortImageContainer(override val cols: Int, override val rows: Int): ImageMatrixContainer<Short>() {
     val array = ShortArray(arraySize)
 
     override fun getInArray(index: Int): Short = array[index]
@@ -65,7 +65,7 @@ public class ShortImageContainer(override val cols: Int, override val rows: Int)
     }
 }
 
-public class ByteImageContainer(override val cols: Int, override val rows: Int): ImageContainer<Byte>() {
+public class ByteImageContainer(override val cols: Int, override val rows: Int): ImageMatrixContainer<Byte>() {
     val array = ByteArray(arraySize)
 
     override fun getInArray(index: Int): Byte = array[index]
