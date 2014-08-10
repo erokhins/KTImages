@@ -9,7 +9,7 @@ public class OperationMultiplyTest {
     Test fun vectorMultiply() {
         val v1 = common.test.vector(1, 2, 3)
         val v2 = common.test.vector(2, 3, 9)
-        val result = operations.vectorMultiplyOperation(v1, v2, {(a, b) -> a * b }, {(a, b) -> a + b })
+        val result = operations.vectorMultiplyOperation(v1, v2, {this * it }, {this + it})
         test.assertEquals(35, result)
     }
 
@@ -24,7 +24,7 @@ public class OperationMultiplyTest {
             row(5, 6, 5)
             row(7, 8, 9)
         }
-        val result = operations.matrixMultiplyOperation(m1, m2, {(a, b) -> a * b }, {(a, b) -> a + b })
+        val result = operations.matrixMultiplyOperation(m1, m2, {this * it }, { this  + it})
         test.assertEquals("50:60:62 114:140:142", result.toStr())
     }
 
