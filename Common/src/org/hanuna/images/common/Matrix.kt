@@ -6,7 +6,7 @@ import org.hanuna.images.common.toCorrectImageNumber
  * Created by smevok on 7/26/14.
  */
 
-public trait Vector<T> : OneDimension {
+public trait Vector<out T> : OneDimension {
     fun get(index: Int): T
 }
 
@@ -14,7 +14,7 @@ public trait MutableVector<T> : Vector<T> {
     fun set(index: Int, value: T)
 }
 
-public trait Matrix<T> : TwoDimension {
+public trait Matrix<out T> : TwoDimension {
     public fun get(col: Int, row: Int): T
     public fun get(coord: Coordinates): T = get(coord.col, coord.row)
 }
@@ -24,7 +24,7 @@ public trait MutableMatrix<T> : Matrix<T> {
     public fun set(coord: Coordinates, value: T): Unit = set(coord.col, coord.row, value)
 }
 
-public trait ImageVector<T> : Vector<T> {
+public trait ImageVector<out T> : Vector<T> {
     override fun get(index: Int): T = get_correct(index.toCorrectImageNumber(size))
 
     fun get_correct(index: Int): T
@@ -36,7 +36,7 @@ public trait ImageMutableVector<T> : MutableVector<T>, ImageVector<T> {
     fun set_correct(index: Int, value: T)
 }
 
-public trait ImageMatrix<T> : Matrix<T> {
+public trait ImageMatrix<out T> : Matrix<T> {
     override fun get(col: Int, row: Int): T =
             get_correct(col.toCorrectImageNumber(cols), row.toCorrectImageNumber(rows))
 
