@@ -2,6 +2,8 @@ package org.hanuna.images.utils
 
 import org.hanuna.images.common.ImageMatrix
 import org.hanuna.images.common.ImageMutableMatrix
+import java.util.ArrayList
+import org.hanuna.images.common.ArrayWrapper
 
 /**
  * Created by smevok on 8/11/14.
@@ -70,6 +72,15 @@ public class ByteImageContainer(override val cols: Int, override val rows: Int):
 
     override fun getInArray(index: Int): Byte = array[index]
     override fun setInArray(index: Int, value: Byte) {
+        array[index]= value
+    }
+}
+
+public class CommonImageContainer<T>(override val cols: Int, override val rows: Int, default: T): ImageMatrixContainer<T>() {
+    val array = ArrayWrapper(arraySize, default)
+
+    override fun getInArray(index: Int): T = array[index]
+    override fun setInArray(index: Int, value: T) {
         array[index]= value
     }
 }

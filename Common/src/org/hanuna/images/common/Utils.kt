@@ -1,5 +1,7 @@
 package org.hanuna.images.common
 
+import java.util.AbstractList
+
 /**
  * Created by smevok on 5/11/14.
  */
@@ -32,3 +34,16 @@ public fun IntRange.reverse(reverse: Boolean = true): Progression<Int> =
             IntProgression(end, start, -1)
         else
             this
+
+public class ArrayWrapper<T>(val size: Int, val default: T): AbstractList<T>() {
+    private val array = Array<Any?>(size, {default})
+
+    override fun size(): Int = size
+    override fun get(index: Int): T = array[index] as T
+
+    override fun set(index: Int, element: T): T {
+        val prev = array[index]
+        array[index] = element
+        return prev as T
+    }
+}
