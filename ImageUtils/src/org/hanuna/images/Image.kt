@@ -16,27 +16,29 @@ public trait Pixel {
     val blue: Int
 }
 
-public trait Image : ImageMatrix<Pixel>
+public trait APixel : Pixel {
+    val alpha: Int
+}
 
-public val Image.redChanel: ImageMatrix<Int>
+public val ImageMatrix<Pixel>.redChanel: ImageMatrix<Int>
     get() = object : ImageMatrix<Int> {
         override val cols: Int = this@redChanel.cols
         override val rows: Int = this@redChanel.rows
         override fun get_correct(col: Int, row: Int): Int = this@redChanel[col, row].red
     }
 
-public val Image.greenChanel: ImageMatrix<Int>
+public val ImageMatrix<Pixel>.greenChannel: ImageMatrix<Int>
     get() = object : ImageMatrix<Int> {
-        override val cols: Int = this@greenChanel.cols
-        override val rows: Int = this@greenChanel.rows
-        override fun get_correct(col: Int, row: Int): Int = this@greenChanel[col, row].green
+        override val cols: Int = this@greenChannel.cols
+        override val rows: Int = this@greenChannel.rows
+        override fun get_correct(col: Int, row: Int): Int = this@greenChannel[col, row].green
     }
 
-public val Image.blueChanel: ImageMatrix<Int>
+public val ImageMatrix<Pixel>.blueChannel: ImageMatrix<Int>
     get() = object : ImageMatrix<Int> {
-        override val cols: Int = this@blueChanel.cols
-        override val rows: Int = this@blueChanel.rows
-        override fun get_correct(col: Int, row: Int): Int = this@blueChanel[col, row].blue
+        override val cols: Int = this@blueChannel.cols
+        override val rows: Int = this@blueChannel.rows
+        override fun get_correct(col: Int, row: Int): Int = this@blueChannel[col, row].blue
     }
 
 public class ImageContainer(override val cols: Int, override val rows: Int): ImageMatrixContainer<Pixel>() {
@@ -54,16 +56,16 @@ public class ImageContainer(override val cols: Int, override val rows: Int): Ima
     }
 }
 
-public fun composite(redChannel: ImageMatrix<Int>, greenChanel: ImageMatrix<Int>, blueChannel: ImageMatrix<Int>): Image
-        = object : Image {
+public fun composite(redChannel: ImageMatrix<Int>, greenChannel: ImageMatrix<Int>, blueChannel: ImageMatrix<Int>): ImageMatrix<Pixel>
+        = object : ImageMatrix<Pixel> {
     {
-        assert(redChannel.equalSize(greenChanel), redChannel.equalSize(blueChannel))
+        assert(redChannel.equalSize(greenChannel), redChannel.equalSize(blueChannel))
     }
     override val cols: Int = redChannel.cols
     override val rows: Int = redChannel.rows
     override fun get_correct(col: Int, row: Int): Pixel = object : Pixel {
         override val red: Int = redChannel[col, row]
-        override val green: Int = greenChanel[col, row]
+        override val green: Int = greenChannel[col, row]
         override val blue: Int = blueChannel[col, row]
     }
 }
