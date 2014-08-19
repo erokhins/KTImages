@@ -50,3 +50,12 @@ public trait ImageMutableMatrix<T> : MutableMatrix<T>, ImageMatrix<T> {
     fun set_correct(col: Int, row: Int, value: T)
 }
 
+public fun <T> OneDimension.asImageVector(getCorrect: (Int) -> T): ImageVector<T>
+    = object : ImageVector<T>, OneDimension by this {
+    override fun get_correct(index: Int): T = getCorrect(index)
+}
+
+public fun <T> TwoDimension.asImageMatrix(getCorrect: Coordinates.() -> T): ImageMatrix<T>
+    = object : ImageMatrix<T>, TwoDimension by this {
+    override fun get_correct(col: Int, row: Int): T = coord(col, row).getCorrect()
+}

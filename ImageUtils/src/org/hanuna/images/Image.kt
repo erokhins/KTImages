@@ -4,6 +4,7 @@ import org.hanuna.images.common.ImageMatrix
 import org.hanuna.images.utils.ImageMatrixContainer
 import org.hanuna.images.common.to255Int
 import org.hanuna.images.common.equalSize
+import org.hanuna.images.common.asImageMatrix
 
 /**
  * Created by smevok on 8/11/14.
@@ -21,25 +22,16 @@ public trait APixel : Pixel {
 }
 
 public val ImageMatrix<Pixel>.redChanel: ImageMatrix<Int>
-    get() = object : ImageMatrix<Int> {
-        override val cols: Int = this@redChanel.cols
-        override val rows: Int = this@redChanel.rows
-        override fun get_correct(col: Int, row: Int): Int = this@redChanel[col, row].red
-    }
+    get() = asImageMatrix { this@redChanel[col, row].red }
 
 public val ImageMatrix<Pixel>.greenChannel: ImageMatrix<Int>
-    get() = object : ImageMatrix<Int> {
-        override val cols: Int = this@greenChannel.cols
-        override val rows: Int = this@greenChannel.rows
-        override fun get_correct(col: Int, row: Int): Int = this@greenChannel[col, row].green
-    }
+    get() = asImageMatrix { this@greenChannel[col, row].green }
 
 public val ImageMatrix<Pixel>.blueChannel: ImageMatrix<Int>
-    get() = object : ImageMatrix<Int> {
-        override val cols: Int = this@blueChannel.cols
-        override val rows: Int = this@blueChannel.rows
-        override fun get_correct(col: Int, row: Int): Int = this@blueChannel[col, row].blue
-    }
+    get() = asImageMatrix { this@blueChannel[col, row].blue }
+
+public val ImageMatrix<APixel>.alphaChannel: ImageMatrix<Int>
+    get() = asImageMatrix { this@alphaChannel[col, row].alpha }
 
 public class ImageContainer(override val cols: Int, override val rows: Int): ImageMatrixContainer<Pixel>() {
     public val array: ByteArray = ByteArray(3 * arraySize)

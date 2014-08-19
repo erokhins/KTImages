@@ -21,7 +21,16 @@ public trait Coordinates {
     override fun hashCode(): Int = col + row * 37
 }
 
-public class SimpleCoordinates(override val col: Int, override val row: Int) : Coordinates
+public fun dimension(size: Int): OneDimension
+    = object: OneDimension {
+    override val size: Int = size
+}
+
+public fun dimension(cols: Int, rows : Int): TwoDimension
+    = object: TwoDimension {
+    override val cols: Int = cols
+    override val rows: Int = rows
+}
 
 public fun OneDimension.equalSize(other: OneDimension): Boolean = this.size == other.size
 public fun TwoDimension.equalSize(other: TwoDimension): Boolean = this.cols == other.cols && this.rows == other.rows
@@ -32,7 +41,11 @@ public fun OneDimension.isNotEmpty(): Boolean = size != 0
 public fun TwoDimension.isEmpty(): Boolean = cols == 0 || rows == 0
 public fun TwoDimension.isNotEmpty(): Boolean = !isEmpty()
 
-public fun coord(col: Int, row: Int): Coordinates = SimpleCoordinates(col, row)
+public fun coord(col: Int, row: Int): Coordinates
+        = object: Coordinates {
+    override val col: Int = col
+    override val row: Int = row
+}
 public val FIRST: Coordinates = coord(0, 0)
 
 public val Int.col: Coordinates

@@ -48,32 +48,15 @@ public fun <T> MutableMatrix<T>.toI(): ImageMutableMatrix<T> {
     }
 }
 
-public fun <T> Vector<T>.reverse(): ImageVector<T> = object : ImageVector<T> {
-    override val size: Int = this@reverse.size
-    override fun get_correct(index: Int): T = this@reverse[size - 1 - index]
-}
+public fun <T> Vector<T>.reverse(): ImageVector<T> = asImageVector { this@reverse[size - 1 - it] }
 
-public fun <T> Vector<T>.asMatrixRow(): ImageMatrix<T> = object: ImageMatrix<T> {
-    override fun get_correct(col: Int, row: Int): T = this@asMatrixRow[col]
-    override val cols: Int = size
-    override val rows: Int = 1
-}
+public fun <T> Vector<T>.asMatrixRow(): ImageMatrix<T> = dimension(size, 1).asImageMatrix { this@asMatrixRow[col] }
 
-public fun <T> Vector<T>.asMatrixCol(): ImageMatrix<T> = object: ImageMatrix<T> {
-    override fun get_correct(col: Int, row: Int): T = this@asMatrixCol[row]
-    override val cols: Int = 1
-    override val rows: Int = size
-}
+public fun <T> Vector<T>.asMatrixCol(): ImageMatrix<T> = dimension(1, size).asImageMatrix { this@asMatrixCol[row] }
 
-public fun <T> Matrix<T>.getRow(row: Int): ImageVector<T> = object : ImageVector<T> {
-    override val size: Int = cols
-    override fun get_correct(index: Int): T = this@getRow[index, row]
-}
+public fun <T> Matrix<T>.getRow(row: Int): ImageVector<T> = dimension(cols).asImageVector { this@getRow[it, row] }
 
-public fun <T> Matrix<T>.getCol(col: Int): ImageVector<T> = object : ImageVector<T> {
-    override val size: Int = rows
-    override fun get_correct(index: Int): T = this@getCol[col, index]
-}
+public fun <T> Matrix<T>.getCol(col: Int): ImageVector<T> = dimension(rows).asImageVector { this@getCol[col, it] }
 
 public enum class SimpleTransform(val ColRowR: Boolean, val ColR: Boolean, val RowR: Boolean) {
     ID : SimpleTransform(false, false, false)       // :) Hi, Anya!
@@ -101,18 +84,9 @@ public fun <T> Matrix<T>.simpleTransform(transform: SimpleTransform): ImageMatri
             }
         }
 
-public fun <A, B> Vector<A>.map(f: (A) -> B): ImageVector<B> =
-        object : ImageVector<B> {
-            override val size: Int = this@map.size
-            override fun get_correct(index: Int): B = f(this@map[index])
-        }
+public fun <A, B> Vector<A>.map(f: (A) -> B): ImageVector<B> = asImageVector { f(this@map[it]) }
 
-public fun <A, B> Matrix<A>.map(f: (A) -> B): ImageMatrix<B> =
-        object : ImageMatrix<B> {
-            override val cols: Int = this@map.cols
-            override val rows: Int = this@map.rows
-            override fun get_correct(col: Int, row: Int): B = f(this@map[col, row])
-        }
+public fun <A, B> Matrix<A>.map(f: (A) -> B): ImageMatrix<B> = asImageMatrix {  f(this@map[col, row]) }
 
 public fun <T> Vector<T>.writeTo(other: MutableVector<T>) {
     forAll {

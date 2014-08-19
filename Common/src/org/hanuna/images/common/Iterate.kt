@@ -38,6 +38,6 @@ public fun TwoDimension.forAll2(strategy: ForAllStrategy = ForAllStrategy.LR_TB,
 public fun TwoDimension.forAll(strategy: ForAllStrategy = ForAllStrategy.LR_TB, f: (Coordinates) -> Unit) {
     forAll2(strategy) {
         (col, row) ->
-        f(SimpleCoordinates(col, row))
+        f(coord(col, row))
     }
 }
