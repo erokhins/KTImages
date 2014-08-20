@@ -47,7 +47,7 @@ public trait ImageAsByteArray: TwoDimension {
 }
 
 public class GrayImage(override val cols: Int, override val rows: Int) : ImageAsByteArray, ImageMatrixContainer<Int>() {
-    override val byteArray: ByteArray = ByteArray(arraySize)
+    override val byteArray: ByteArray = ByteArray(arraySize())
     override val arrayType: ByteArrayType = ByteArrayType.GRAY
 
     override fun getInArray(index: Int): Int = byteArray[index].to255Int()

@@ -31,14 +31,16 @@ public val BufferedImage.imageAsByteArray: ImageAsByteArray?
     get() {
         val arrayType = byteArrayType
         val byteArray = getByteArray()
-        if (arrayType != null && byteArray != null)
+        if (arrayType != null && byteArray != null) {
+            val cols = getWidth()
+            val rows = getHeight()
             return object : ImageAsByteArray {
-                override val cols: Int = getWidth()
-                override val rows: Int = getHeight()
+                override val cols: Int = cols
+                override val rows: Int = rows
                 override val byteArray: ByteArray = byteArray
                 override val arrayType: ByteArrayType = arrayType
             }
-        else
+        } else
             return null
     }
 
@@ -51,7 +53,7 @@ public fun BufferedImage.toImage(): Image {
     return Image(getWidth(), getHeight(), ByteArrayType.BGR, byteArray)
 }
 
-public fun ImageAsByteArray.asBufferedImage(cols: Int, rows: Int): BufferedImage {
+public fun ImageAsByteArray.asBufferedImage(): BufferedImage {
     val buffer = DataBufferByte(byteArray, byteArray.size)
     val cm = ComponentColorModel(
             ColorSpace.getInstance(ColorSpace.CS_sRGB)!!,

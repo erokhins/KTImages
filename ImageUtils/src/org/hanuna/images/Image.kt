@@ -36,8 +36,8 @@ fun pixel(red: Int, green: Int, blue: Int, alpha: Int): APixel
     override val alpha: Int = alpha
 }
 
-public val ImageMatrix<Pixel>.redChanel: ImageMatrix<Int>
-    get() = asImageMatrix { this@redChanel[col, row].red }
+public val ImageMatrix<Pixel>.redChannel: ImageMatrix<Int>
+    get() = asImageMatrix { this@redChannel[col, row].red }
 
 public val ImageMatrix<Pixel>.greenChannel: ImageMatrix<Int>
     get() = asImageMatrix { this@greenChannel[col, row].green }
@@ -49,7 +49,7 @@ public val ImageMatrix<APixel>.alphaChannel: ImageMatrix<Int>
     get() = asImageMatrix { this@alphaChannel[col, row].alpha }
 
 public class ImageContainer(override val cols: Int, override val rows: Int): ImageMatrixContainer<Pixel>() {
-    public val array: ByteArray = ByteArray(3 * arraySize)
+    public val array: ByteArray = ByteArray(3 * arraySize())
 
     override fun getInArray(index: Int): Pixel = object : Pixel {
         override val red: Int = array[index * 3].to255Int()
