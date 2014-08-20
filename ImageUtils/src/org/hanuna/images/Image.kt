@@ -21,6 +21,21 @@ public trait APixel : Pixel {
     val alpha: Int
 }
 
+fun pixel(red: Int, green: Int, blue: Int) : Pixel
+    = object : Pixel {
+    override val red: Int = red
+    override val green: Int = green
+    override val blue: Int = blue
+}
+
+fun pixel(red: Int, green: Int, blue: Int, alpha: Int): APixel
+    = object : APixel {
+    override val red: Int = red
+    override val green: Int = green
+    override val blue: Int = blue
+    override val alpha: Int = alpha
+}
+
 public val ImageMatrix<Pixel>.redChanel: ImageMatrix<Int>
     get() = asImageMatrix { this@redChanel[col, row].red }
 
