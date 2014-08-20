@@ -36,15 +36,14 @@ public trait ImageAsByteArray: TwoDimension {
     val byteArray: ByteArray
     val arrayType: ByteArrayType
 
-    val Int.redIndex: Int get() = this * arrayType.pixelStride + arrayType.redOffset
-    val Int.greenIndex: Int get() = this * arrayType.pixelStride + arrayType.greenOffset
-    val Int.blueIndex: Int get() = this * arrayType.pixelStride + arrayType.blueOffset
-    val Int.alphaIndex: Int
+    protected val Int.redIndex: Int get() = this * arrayType.pixelStride + arrayType.redOffset
+    protected val Int.greenIndex: Int get() = this * arrayType.pixelStride + arrayType.greenOffset
+    protected val Int.blueIndex: Int get() = this * arrayType.pixelStride + arrayType.blueOffset
+    protected val Int.alphaIndex: Int
         get() {
             assert(arrayType.hasAlpha)
             return this * arrayType.pixelStride + arrayType.alphaOffset
         }
-
 }
 
 public class GrayImage(override val cols: Int, override val rows: Int) : ImageAsByteArray, ImageMatrixContainer<Int>() {
